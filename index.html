@@ -1,65 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pranitha Reddy | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pranitha Reddy Vuyyuru — AI/ML, Software Engineering &amp; AML/KYC</title>
+<meta name="description" content="Portfolio of Pranitha Reddy Vuyyuru — data-driven professional with skills spanning AI/ML, software engineering, and AML/KYC risk analysis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F8FBF2;
+    --bg-alt: #EEF6E7;
+    --card: #FFFFFF;
+    --line: #DEEAD4;
+    --ink: #22301F;
+    --ink-soft: #51624C;
+    --muted: #86977F;
+    --gold: #DB6E96;
+    --gold-dim: rgba(219,110,150,0.10);
+    --leaf: #4C9A6A;
+    --sky: #6FAFD4;
+    --sun: #E8B84B;
+    --radius: 4px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family:'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection{ background: var(--gold); color:#FFFFFF; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width: 1080px; margin:0 auto; padding: 0 40px; }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em; color: var(--ink); }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  header{
+    position: sticky; top:0; z-index:50;
+    background: rgba(248,251,242,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; height:68px; }
+  .logo{
+    width:36px; height:36px; border-radius:50%;
+    background: var(--gold-dim); border:1px solid var(--gold);
+    color: var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:500;
+  }
+  .brand-block{ display:flex; align-items:center; gap:12px; }
+  .brand-name{ font-family:'Fraunces', serif; font-weight:600; font-size:16px; }
+  .navlinks{ display:flex; gap:30px; font-size:13px; letter-spacing:0.04em; text-transform:uppercase; color: var(--ink-soft); }
+  .navlinks a{ transition: color .15s ease; }
+  .navlinks a:hover{ color: var(--gold); }
+  @media (max-width:680px){ .navlinks{ display:none; } }
+
+  .hero{ padding: 100px 0 60px; border-bottom:1px solid var(--line); }
+  .tag-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    color: var(--gold); background: var(--gold-dim);
+    border:1px solid rgba(216,166,87,0.35);
+    padding: 6px 14px; border-radius: 999px;
+    margin-bottom: 28px;
+  }
+  .tag-pill::before{ content:""; width:6px; height:6px; border-radius:50%; background: var(--gold); }
+  .hero h1{ font-size: clamp(36px, 6vw, 58px); line-height:1.08; max-width: 780px; }
+  .hero h1 .accent{ color: var(--gold); font-style: italic; }
+  .hero p.lead{ margin-top:22px; max-width: 620px; font-size:17px; color: var(--ink-soft); }
+  .hero-links{ margin-top:34px; display:flex; flex-wrap:wrap; gap:14px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 12px 22px; border-radius: var(--radius);
+    font-size:14px; font-weight:500;
+    border:1px solid var(--line);
+    transition: all .15s ease;
+  }
+  .btn.primary{ background: var(--gold); color:#FFFFFF; border-color: var(--gold); font-weight:600; }
+  .btn.primary:hover{ background:#C85A82; }
+  .btn.ghost{ color: var(--ink); }
+  .btn.ghost:hover{ border-color: var(--gold); color: var(--gold); }
+  .btn.leaf{
+    background: transparent;
+    color: var(--leaf);
+    border-color: var(--leaf);
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .btn.leaf:hover{ background: var(--leaf); color:#fff; }
+
+  .stat-strip{
+    margin-top: 56px;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top:1px solid var(--line);
+  }
+  @media (max-width:720px){ .stat-strip{ grid-template-columns: repeat(2,1fr); } }
+  .stat{
+    padding: 22px 22px 0 0;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat .num{ font-family:'Fraunces', serif; font-size:26px; color: var(--gold); }
+  .stat .label{ font-size:12.5px; color: var(--muted); margin-top:4px; text-transform:uppercase; letter-spacing:0.04em; }
+
+  section{ padding: 76px 0; border-bottom:1px solid var(--line); }
+  .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom: 44px; flex-wrap:wrap; gap:12px; }
+  .eyebrow-label{ font-family:'IBM Plex Mono', monospace; font-size:13px; color: var(--gold); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; display:block; }
+  .section-head h2{ font-size:30px; }
+
+  .about-text{ max-width:680px; font-size:16.5px; color: var(--ink-soft); }
+  .about-text p + p{ margin-top:16px; }
+
+  .skill-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+  @media (max-width:820px){ .skill-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width:560px){ .skill-grid{ grid-template-columns: 1fr; } }
+  .skill-cat{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .skill-cat-head{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .skill-dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .skill-cat h3{ font-family:'Inter',sans-serif; font-size:12.5px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color: var(--ink-soft); }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{ font-family:'IBM Plex Mono', monospace; font-size:12px; padding:5px 11px; background: var(--bg-alt); border:1px solid var(--line); border-radius: 999px; color: var(--ink-soft); line-height:1.4; }
+
+  .xp-row{ display:grid; grid-template-columns: 160px 1fr; gap:24px; max-width:760px; }
+  @media (max-width:640px){ .xp-row{ grid-template-columns:1fr; } }
+  .xp-meta{ color: var(--muted); font-size:13px; font-family:'IBM Plex Mono', monospace; }
+  .xp-role{ font-weight:600; font-size:18px; margin-bottom:2px; }
+  .xp-org{ color: var(--gold); font-size:14.5px; margin-bottom:14px; }
+  .xp-body li{ position:relative; padding-left:18px; margin-bottom:10px; color: var(--ink-soft); font-size:15px; list-style:none; }
+  .xp-body li::before{ content:"—"; position:absolute; left:0; color: var(--gold); }
+
+  .projects{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  @media (max-width:820px){ .projects{ grid-template-columns:1fr; } }
+  .project-card{
+    background: var(--card); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 28px; display:flex; flex-direction:column;
+  }
+  .project-card.wide{ grid-column: 1 / -1; }
+  .project-date{ font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--muted); margin-bottom:10px; }
+  .project-title{ font-size:19px; margin-bottom:10px; }
+  .project-desc{ color: var(--ink-soft); font-size:14.5px; margin-bottom:18px; flex-grow:1; }
+  .project-desc ul{ margin-top:8px; }
+  .project-desc li{ list-style:none; position:relative; padding-left:16px; margin-bottom:6px; }
+  .project-desc li::before{ content:"—"; position:absolute; left:0; color: var(--gold); }
+  .project-stack{ display:flex; flex-wrap:wrap; gap:7px; }
+  .stack-tag{ font-size:11.5px; font-family:'IBM Plex Mono', monospace; color: var(--gold); background: var(--gold-dim); padding:4px 9px; border-radius: 999px; }
+
+  .terminal{ margin-top:16px; background:#0D0E22; border-radius: var(--radius); overflow:hidden; border:1px solid var(--line); }
+  .terminal-bar{ display:flex; gap:6px; padding:9px 13px; background:#0A0B1C; }
+  .terminal-bar span{ width:8px; height:8px; border-radius:50%; background:#2C2F52; }
+  .terminal-body{ padding:14px 16px 18px; font-family:'IBM Plex Mono', monospace; font-size:12px; line-height:1.85; color:#CFCBEA; overflow-x:auto; }
+  .terminal-body .c{ color: var(--muted); }
+  .terminal-body .p{ color: var(--gold); }
+  .terminal-body .p::before{ content:"$ "; color: var(--muted); }
+
+  .ed-row{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; padding:16px 0; border-bottom:1px solid var(--line); }
+  .ed-row:last-child{ border-bottom:none; }
+  .ed-degree{ font-weight:600; font-size:16px; }
+  .ed-school{ color: var(--muted); font-size:14px; }
+  .ed-gpa{ font-family:'IBM Plex Mono', monospace; font-size:13px; color: var(--gold); }
+
+  .ach-list li{ list-style:none; padding:14px 0; border-bottom:1px solid var(--line); font-size:15px; color: var(--ink-soft); }
+  .ach-list li:last-child{ border-bottom:none; }
+  .ach-list strong{ color: var(--ink); }
+
+  footer{ padding: 70px 0 44px; }
+  footer h2{ font-size:32px; max-width:480px; }
+  .footer-links{ margin-top:26px; display:flex; flex-wrap:wrap; gap:14px; }
+  .footer-bottom{ margin-top:60px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12.5px; color: var(--muted); font-family:'IBM Plex Mono', monospace; }
+
+  @media (max-width:560px){ .wrap{ padding:0 22px; } .hero{ padding:76px 0 44px; } }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Pranitha Reddy</h1>
-    <p>Software Engineer | Cloud Engineer | Full-Stack Developer</p>
-    <a href="resume.pdf" download>Download Resume</a>
-  </header>
+<div style="height:4px; background: linear-gradient(90deg, var(--leaf), var(--sun), var(--gold), var(--sky));"></div>
 
-  <section>
-    <h2>About Me</h2>
-    <p>
-      I am a Computer Science graduate with experience in software development,
-      cloud technologies, web applications, and AI-based projects.
-    </p>
-  </section>
+<header>
+  <nav class="wrap">
+    <div class="brand-block">
+      <div class="logo">PR</div>
+      <div class="brand-name">Pranitha Reddy</div>
+    </div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
 
-  <section>
-    <h2>Skills</h2>
-    <p>HTML, CSS, JavaScript, React, Python, AWS, Docker, Git, GitHub, Linux</p>
-  </section>
+<section class="hero wrap">
+  <div class="tag-pill">Open to AI/ML, Software Engineering &amp; AML/KYC roles</div>
+  <h1>Hi, I'm Pranitha. <span class="accent">I bring data and diligence to compliance.</span></h1>
+  <p class="lead">M.S. Computer Science professional with hands-on experience across AI/ML, software engineering, and AML/KYC analysis — from predictive modeling and full-stack development to customer risk scoring and identity verification.</p>
+  <div class="hero-links">
+    <a class="btn primary" href="#projects">View my work</a>
+    <a class="btn leaf" href="#contact">✉ Get in touch</a>
+  </div>
 
-  <section>
-    <h2>Projects</h2>
+  <div class="stat-strip" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="stat"><div class="num">MS · CS</div><div class="label">Catholic University of America</div></div>
+    <div class="stat"><div class="num">ICCET '24</div><div class="label">Published Research</div></div>
+  </div>
+</section>
 
-    <div class="project">
-      <h3>Cloud Docker AWS Project</h3>
-      <p>
-        Built and deployed a cloud-based application using AWS EC2, Docker,
-        Nginx reverse proxy, and backend API services.
-      </p>
+<section id="about">
+  <div class="wrap">
+    <span class="eyebrow-label">About</span>
+    <div class="section-head"><h2>Systems thinker, data-first.</h2></div>
+    <div class="about-text">
+      <p>I'm a Computer Science graduate with hands-on experience spanning three areas: applied AI/ML (predictive modeling, end-to-end pipelines), full-stack software engineering (React, JavaScript, cloud infrastructure), and AML/KYC analysis (SQL-based customer risk scoring, identity verification, due-diligence workflows).</p>
+      <p>The instinct is the same across all three: look closely at the data, understand the full system before making a call, and build something that holds up to scrutiny — whether that's a model, an application, or a risk decision.</p>
     </div>
 
-    <div class="project">
-      <h3>GenAI Application</h3>
-      <p>
-        Developed an AI-powered application using Python, LLM concepts,
-        prompt engineering, and API integration.
-      </p>
+    <div class="skill-grid" style="margin-top:52px;">
+      <div class="skill-cat">
+        <div class="skill-cat-head"><span class="skill-dot" style="background: var(--gold);"></span><h3>AML / KYC &amp; Compliance</h3></div>
+        <div class="chips"><span class="chip">Customer Risk Scoring</span><span class="chip">KYC Verification</span><span class="chip">Due Diligence Workflows</span><span class="chip">Identity Verification</span></div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-head"><span class="skill-dot" style="background: var(--sky);"></span><h3>Data &amp; Languages</h3></div>
+        <div class="chips"><span class="chip">SQL</span><span class="chip">MySQL</span><span class="chip">Python</span><span class="chip">JavaScript</span></div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-head"><span class="skill-dot" style="background: var(--leaf);"></span><h3>Analytics / ML</h3></div>
+        <div class="chips"><span class="chip">scikit-learn</span><span class="chip">pandas</span><span class="chip">Predictive Modeling</span><span class="chip">Feature Engineering</span></div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-head"><span class="skill-dot" style="background: var(--sun);"></span><h3>Identity &amp; Blockchain</h3></div>
+        <div class="chips"><span class="chip">Zero-Knowledge Proofs</span><span class="chip">DIDs</span><span class="chip">Verifiable Credentials</span></div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-head"><span class="skill-dot" style="background: var(--muted);"></span><h3>Web &amp; Tools</h3></div>
+        <div class="chips"><span class="chip">React.js</span><span class="chip">REST APIs</span><span class="chip">Git</span></div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-head"><span class="skill-dot" style="background: var(--gold);"></span><h3>Practices</h3></div>
+        <div class="chips"><span class="chip">SDLC</span><span class="chip">Agile</span><span class="chip">EDA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <span class="eyebrow-label">Experience</span>
+    <div class="section-head"><h2>Where I've worked</h2></div>
+    <div class="xp-row">
+      <div class="xp-meta">Internship</div>
+      <div>
+        <div class="xp-role">AI-Integrated Front-End Developer</div>
+        <div class="xp-org">Rrootshell Technologies PVT LTD</div>
+        <ul class="xp-body">
+          <li>Engineered data-centric UI features within ML-supported applications, bridging AI backend logic and front-end interfaces to deliver real-time user experiences.</li>
+          <li>Built and maintained production-grade React.js components following SDLC best practices, collaborating with cross-functional teams on scalable, maintainable JavaScript projects.</li>
+          <li>Developed algorithmic automation solutions that reduced manual effort — problem-solving transferable to pipeline and systems engineering.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <span class="eyebrow-label">Selected work</span>
+    <div class="section-head"><h2>Featured projects</h2></div>
+    <div class="projects">
+
+      <div class="project-card wide">
+        <div class="project-date">AML / KYC</div>
+        <div class="project-title">Customer Risk Scoring &amp; KYC Verification System</div>
+        <div class="project-desc">
+          Built a MySQL-based system that evaluates mock customer records, assigns a risk score to each, and flags high-risk customers for manual review — modeling the core logic behind a customer due-diligence workflow.
+          <ul>
+            <li>Designed a relational schema to hold sample customer records and applied SQL-based logic to score and rank customers by risk.</li>
+            <li>Flagged high-risk records for review, reflecting the escalation step in a real KYC due-diligence process.</li>
+          </ul>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">MySQL</span><span class="stack-tag">SQL</span><span class="stack-tag">Risk Scoring</span><span class="stack-tag">KYC</span>
+        </div>
+      </div>
+
+      <div class="project-card wide">
+        <div class="project-date">Identity Verification · KYC-Adjacent</div>
+        <div class="project-title">Decentralized Digital Identity: Verifiable Certificate System</div>
+        <div class="project-desc">
+          A privacy-first identity verification system — the same underlying problem KYC solves: confirming who someone is before trusting them. Published research, presented at an international conference.
+          <ul>
+            <li>Built identity creation, verification, and access-control logic using blockchain, zero-knowledge proofs, and DIDs (decentralized identifiers).</li>
+            <li>Presented "Blockchain Powered Verifiable Certificates" at ICCET 2024, the International Conference on Contemporary Engineering and Technology.</li>
+          </ul>
+        </div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span><span class="stack-tag">JavaScript</span><span class="stack-tag">ZK Proofs</span><span class="stack-tag">DIDs</span><span class="stack-tag">Identity Verification</span>
+        </div>
+      </div>
+
     </div>
 
-    <div class="project">
-      <h3>Full-Stack Web Application</h3>
-      <p>
-        Created a responsive web application using modern frontend and backend technologies.
-      </p>
-    </div>
-  </section>
+    <div style="margin-top:52px;">
+      <span class="eyebrow-label" style="margin-bottom:6px;">Additional technical work</span>
+      <p style="color:var(--muted); font-size:14px; margin-bottom:24px; max-width:620px;">Broader data and engineering experience that supports the analytical work above.</p>
+      <div class="projects">
+        <div class="project-card">
+          <div class="project-date">Data / Machine Learning</div>
+          <div class="project-title">Used Car Price Prediction</div>
+          <div class="project-desc">
+            End-to-end pipeline: data collection, cleaning, feature engineering, and model comparison.
+            <ul>
+              <li>Compared Gradient Boosting, Linear Regression, and Decision Trees — Gradient Boosting performed best.</li>
+            </ul>
+          </div>
+          <div class="project-stack">
+            <span class="stack-tag">Python</span><span class="stack-tag">scikit-learn</span><span class="stack-tag">pandas</span>
+          </div>
+        </div>
 
-  <section>
-    <h2>Contact</h2>
-    <p>Email: your-email@example.com</p>
-    <p>LinkedIn: https://linkedin.com/in/your-profile</p>
-    <p>GitHub: https://github.com/your-username</p>
-  </section>
+        <div class="project-card">
+          <div class="project-date">Cloud / DevOps</div>
+          <div class="project-title">Gitea Backup &amp; Restore on AWS S3</div>
+          <div class="project-desc">
+            Backup-and-recovery workflow for a Dockerized Gitea instance on EC2, archiving data to S3 with a tested restore path.
+            <ul>
+              <li>Simulated data loss and executed a full restore, verified against the live web interface.</li>
+            </ul>
+          </div>
+          <div class="project-stack">
+            <span class="stack-tag">AWS EC2</span><span class="stack-tag">AWS S3</span><span class="stack-tag">Docker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <span class="eyebrow-label">Education</span>
+    <div class="section-head"><h2>Foundations</h2></div>
+    <div class="ed-row">
+      <div><div class="ed-degree">MS, Computer Science</div><div class="ed-school">The Catholic University of America, Washington, DC</div></div>
+      <div class="ed-gpa">GPA 3.6</div>
+    </div>
+    <div class="ed-row">
+      <div><div class="ed-degree">BE, Computer Science and Engineering</div><div class="ed-school">Sathyabama Institute of Science and Technology</div></div>
+      <div class="ed-gpa">GPA 3.4</div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap">
+    <span class="eyebrow-label">Recognition</span>
+    <div class="section-head"><h2>Achievements</h2></div>
+    <ul class="ach-list">
+      <li><strong>ICCET 2024 Conference Speaker</strong> — published and presented "Blockchain Powered Verifiable Certificates" at the International Conference on Contemporary Engineering and Technology.</li>
+      <li><strong>InTech Sprint</strong> — completed an intensive industry development program focused on hands-on AI and engineering projects.</li>
+    </ul>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <span class="eyebrow-label">Contact</span>
+    <h2>Let's talk about risk, data, and where I can help.</h2>
+    <div class="footer-links">
+      <a class="btn primary" href="mailto:pranithareddyvuyyuru@gmail.com">pranithareddyvuyyuru@gmail.com</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/pranithavuyyuru" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn ghost" href="https://github.com/Pranitha1331" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+    <div class="footer-bottom">
+      <span>Pranitha Reddy Vuyyuru</span>
+      <span>Bowie, MD</span>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
